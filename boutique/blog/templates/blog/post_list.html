@@ -1,0 +1,18 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+     {% for produit in produits %}
+             <div class="produit">
+                 <h2><a href="{% url 'post_detail' pk=produit.pk %}">{{ produit.nom }}</a></h2>
+                 <div class="prix">
+                     <p> {{ produit.prix }}</p>
+                 </div>
+                 <p>{{ produit.description|linebreaksbr }}</p>
+                 {% if produit.est_disponible %}
+                     <p>Disponible</p>
+                 {% else %}
+                     <p>Rupture de stock</p>
+                 {% endif %}
+             </div>
+     {% endfor %}
+{% endblock %}

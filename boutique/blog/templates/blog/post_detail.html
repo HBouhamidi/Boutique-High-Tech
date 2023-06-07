@@ -1,0 +1,18 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+        <div class="produit">
+            <div class="nom">
+                {{ produit.nom }}
+            </div>
+            <h2>{{ produit.prix }}</h2>
+            <p>{{ produit.description|linebreaksbr }}</p>
+            <h3>Clients ayant commandé ce produit :</h3>
+            <ul>
+                {% for element in produit.elementcommande_set.all %}
+                <li>{{ element.commande.nom_client }} - Quantité : {{ element.quantite }}</li>
+                {% empty %}
+                <li>Aucun client n'a commandé ce produit.</li>
+                {% endfor %}
+            </ul>
+        </div>
+{% endblock %}
